@@ -254,7 +254,7 @@ def init_model(args, data, pre, window, prefixes, targets):
     random.shuffle(bucket_values)
     #new_data = DataLoader(dataset, batch_size=args.init_batch_size)
     # create standard model
-    model = LSTMModel(args, input_size, output_size, use_g_prompt=args.use_g_prompt,
+    model = MHSAModel(args, input_size, output_size, use_g_prompt=args.use_g_prompt,
                       g_prompt_layer_idx=args.g_prompt_layer_idx, use_e_prompt=args.use_e_prompt, 
                       e_prompt_layer_idx=args.e_prompt_layer_idx, g_prompt_length=args.g_prompt_length, 
                       prompt_init='uniform', prompt_length=args.length, num_heads=args.num_heads)
