@@ -8,3 +8,7 @@ This github page contains the code for CNAPwP. The framework of CNAPwP can be se
 
 ## The Repository
 The repository contains the main code for running CNAPwP, including the preprocessing on the datasets, the configurations of each dataset, and the results. 
+
+In [main.py](github.com/TamaraVerbeek/CNAPwP/blob/main.py) it is possible to run the experiments. In [preprocess.py](https://github.com/TamaraVerbeek/CNAPwP/blob/main/Preprocess.py) is the code for converting an event log into a dataset with prefixes. [EPrompt.py](https://github.com/TamaraVerbeek/CNAPwP/blob/main/EPrompt.py) and [G_Prompt](https://github.com/TamaraVerbeek/CNAPwP/blob/main/G_Prompt.py) contain the code for creating the E- and G-Prompt, respectively. [MHSAM.py](https://github.com/TamaraVerbeek/CNAPwP/blob/main/MHSAM.py) contains the Multi Head Self-Attention Model with training and initialization. 
+
+All other files and folders contain additional functions. Such as the [configs](https://github.com/TamaraVerbeek/CNAPwP/tree/main/configs) folder containing the configurations for all datasets, the [PrefixtreeCDDmain](https://github.com/TamaraVerbeek/CNAPwP/tree/main/PrefixTreeCDDmain) folder containing functions for creating the prefix trees, and the [data.py](https://github.com/TamaraVerbeek/CNAPwP/blob/main/Data.py) and [Utils](https://github.com/TamaraVerbeek/CNAPwP/tree/main/Utils) folder containing additional functions. 
