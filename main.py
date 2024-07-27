@@ -9,7 +9,7 @@ import argparse
 import sys
 from Preprocess import Preprocess
 import torch
-from LSTM import init_model, train_model, VariableBatchSizeDataLoader
+from MHSAM import init_model, train_model, VariableBatchSizeDataLoader
 import numpy as np
 from sklearn.metrics import accuracy_score
 from torch.utils.data import DataLoader, TensorDataset
