@@ -397,30 +397,12 @@ if __name__ == '__main__':
         elif 'BPIC17' in args_o.dataset:
             from configs.BPIC17 import get_args_parser
             config_parser = subparser.add_parser('BPIC17_dualprompt', help='BPIC17 DualPrompt configs')
-        elif args_o.dataset == 'IOR_tasks.csv':
-            from configs.IOR import get_args_parser
-            config_parser = subparser.add_parser('IOR', help='IOR DualPrompt configs')
         elif args_o.dataset == 'RandomTasks.csv':
             from configs.Woppie import get_args_parser
             config_parser = subparser.add_parser('Woppie', help='Woppie DualPrompt configs')
-        elif args_o.dataset == 'InternationalDeclarations.csv':
-            from configs.InternationalDeclarations import get_args_parser
-            config_parser = subparser.add_parser('InternationalDeclarations', help='InternationalDeclarations DualPrompt configs')
         elif args_o.dataset == 'RecurrentTasks.csv':
             from configs.Looploop import get_args_parser
             config_parser = subparser.add_parser('Looploop_dataset', help='Looploop_dataset DualPrompt configs')
-        elif args_o.dataset == 'TravelPermits.csv':
-            from configs.TravelPermit import get_args_parser
-            config_parser = subparser.add_parser('TravelPermit', help='PermitLog DualPrompt configs')
-        elif args_o.dataset == 'DomesticDeclarations.csv':
-            from configs.DomesticDeclarations import get_args_parser
-            config_parser = subparser.add_parser('DomesticDeclarations', help='DomesticDeclarations DualPrompt configs')
-        elif args_o.dataset == 'RequestForPayment.csv':
-            from configs.RequestForPayment import get_args_parser
-            config_parser = subparser.add_parser('RequestForPayment', help='RequestForPayment DualPrompt configs')
-        elif args_o.dataset == 'PrepaidTravelCosts.csv':
-            from configs.PrepaidTravelCost import get_args_parser
-            config_parser = subparser.add_parser('PrepaidTravelCost', help='PrepaidTravelCost DualPrompt configs')
         elif args_o.dataset == 'ImbalancedTasks.csv':
             from configs.infrequent import get_args_parser
             config_parser = subparser.add_parser('Infrequent', help='Infrequent DualPrompt configs')
@@ -436,35 +418,12 @@ if __name__ == '__main__':
         dat = args_o.dataset
         args.dataset = args_o.dataset
         #get all concept drifts
-        if dat == 'OIR_tasks.csv':
-            concept_drift = [5224, 11042, 16247, 22178, 27322, 33187, 38349, 44269, 49451] #OIR
-        elif dat == 'IOR_tasks.csv':
-            concept_drift = [5224, 10469, 15674, 21002, 26146, 31429, 36591, 41853, 47035] #IOR
-        elif dat == 'OIRandIORcombi.csv':
-            #concept_drift = [50, 100, 150, 200]
-            concept_drift = [5818, 11042, 16860, 22065, 27996] #combi
-        elif dat == 'RandomTasks.csv':
+        if dat == 'RandomTasks.csv':
             concept_drift = [2724, 5756, 9074, 12025, 15297, 18042, 20680, 23385, 26816, 30068, 33105, 36101, 38786, 41614, 44979, 47623, 50125, 52627, 55129, 57631, 60133, 63493, 66198, 69256, 72060, 75121, 77904]
             taskies = [1, 2, 3, 4, 5, 6, 7, 1, 3, 5, 4, 2, 7, 6, 3, 1, 2, 7, 5, 6 ,4, 5, 1, 4, 7, 2, 6, 3]
         elif dat == 'RecurrentTasks.csv':
             concept_drift = [2725, 5757, 9076, 12073, 15505, 18211, 21273, 24639, 27765, 31186, 33831, 36848, 40232, 42733, 45234, 47735, 50573, 53533, 56333, 59200, 61800, 64522, 67390, 70193, 73136, 75732, 78233, 80734, 83235, 85736, 88237, 90738, 93239, 95740, 98241]
             taskies = [1,2,3,2,3,1,2,3,2,3,1,2,3,2,3,1,2,3,2,3,1,2,3,2,3,1,2,3,2,3,1,2,3,2,3,1]
-        elif 'cp_recurring_tasks' in dat:
-            concept_drift = [3620, 7676]
-        elif 'lp_recurring_tasks' in dat:
-            concept_drift = [3620, 8650]
-        elif 'OIR_recurring_tasks' in dat:
-            concept_drift = [3760, 9000]
-        elif 'InternationalDeclarations' in dat:
-            concept_drift = [12502]
-        elif 'DomesticDeclarations' in dat:
-            concept_drift = [9883]
-        elif 'PrepaidTravelCosts' in dat:
-            concept_drift = [2369]
-        elif 'RequestForPayment' in dat:
-            concept_drift = [4921]
-        elif 'TravelPermits' in dat:
-            concept_drift = [13693]
         elif 'BPIC17' in dat:
             concept_drift = []
             taskies = [1]
@@ -476,8 +435,6 @@ if __name__ == '__main__':
             taskies = [1,2,3,4,3,1,3,2,1,2,1]
         
         start_time = time.time()
-    
-        start_time = time.time()
         args.use_g_prompt = True
         args.use_e_prompt = True
         if d == 'BPIC17.csv':
@@ -485,7 +442,7 @@ if __name__ == '__main__':
         else:
             args.window_size = 1000
         print('Dual Prompt')
-        for j in range(0, 1):
+        for j in range(0, 5):
             file_name = 'output/'+args.output_file+str(args.window_size)+'_'+str(d)+'_'+str(j)+'.csv'
             with open(file_name, mode='w', newline='') as file:
                 writer = csv.writer(file)
@@ -526,220 +483,6 @@ if __name__ == '__main__':
             # Convert each element to a string and write to the file
             for timeee in total_times:
                 file.write(f"{timeee}\n")
-    """
-
-    print('Dual Prompt')
-    e = 10
-    g = 5
-    args.e_prompt_length = e
-    args.g_prompt_length = g
-    args.use_e_prompt = True
-    args.use_g_prompt = False
-    for i in range(0,5):
-        file_name = args.output_file+'_dualprompt_'+str(i)+'_wop_only_eprompt_2.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift, taskies)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['dualprompt_'+str(i)+'_eprompt'] = tasks
-        tree_diffs['dualprompt_'+str(i)+'_eprompt'] = ts
-        accs['dualprompt_'+str(i)+'_eprompt'] = sum(accuracys)/len(accuracys)
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-        
-    args.use_e_prompt = False
-    args.use_g_prompt = True
-    for i in range(0,5):
-        file_name = args.output_file+'_dualprompt_'+str(i)+'_wop_only_gprompt_2.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift, taskies)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['dualprompt_'+str(i)+'_gprompt'] = tasks
-        tree_diffs['dualprompt_'+str(i)+'_gprompt'] = ts
-        accs['dualprompt_'+str(i)+'_gprompt'] = sum(accuracys)/len(accuracys)
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-    args.use_e_prompt = True
-    args.use_g_prompt = True
-    for i in range(0,5):
-        file_name = args.output_file+'_dualprompt_'+str(i)+'_wop_dualprompt_2.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift, taskies)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['dualprompt_'+str(i)+'_dualprompt'] = tasks
-        tree_diffs['dualprompt_'+str(i)+'_dualprompt'] = ts
-        accs['dualprompt_'+str(i)+'_dualprompt'] = sum(accuracys)/len(accuracys)
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-
-    args.use_e_prompt = False
-    args.use_g_prompt = False
-    for i in range(0,5):
-        file_name = args.output_file+'_dualprompt_'+str(i)+'_wop_noprompt_2.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift, taskies)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['dualprompt_'+str(i)+'_noprompt'] = tasks
-        tree_diffs['dualprompt_'+str(i)+'noprompt'] = ts
-        accs['dualprompt_'+str(i)+'_noprompt'] = sum(accuracys)/len(accuracys)
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-
-    start_time = time.time()
-    print('Dual Prompt')
-    args.prefix = False
-    file_name = args.output_file+'_dualprompt_2015loop_'+str(args.prefix)+'.csv'
-    with open(file_name, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        accuracys, ts, tasks, metrics = main(args, writer, concept_drift)
-    end_time = time.time()
-    total_time = end_time - start_time
-    total_time_str = datetime.timedelta(seconds=int(total_time))
-    total_times.append(total_time_str)
-    t['dualprompt_false'].append(tasks)
-    tree_diffs['dualprompt_false'].append(ts)
-    accs['dualprompt_false'].append(sum(accuracys)/len(accuracys))
-            
-    print(f'Total running times:{total_times}')
-    print(f'Order of tasks:{t}')
-    print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-    print(f'Tasks and tree difference: {tree_diffs}')
-    """
-    """
-    start_time = time.time()
-    args.use_g_prompt = False
-    args.use_e_prompt = True
-    for i in range(0,5):
-        print('E-Prompt')
-        file_name = args.output_file+'_eprompt_loop_'+str(i)+'.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['eprompt'].append(tasks)
-        tree_diffs['eprompt'].append(ts)
-        accs['eprompt'].append(sum(accuracys)/len(accuracys))
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-
-    start_time = time.time()
-    args.use_g_prompt = True
-    args.use_e_prompt = False
-    for i in range(0,5):
-        print('G-Prompt')
-        file_name = args.output_file+'_gprompt_loop_'+str(i)+'.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['gprompt'].append(tasks)
-        tree_diffs['gprompt'].append(ts)
-        accs['gprompt'].append(sum(accuracys)/len(accuracys))
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-
-    start_time = time.time()
-    args.use_g_prompt = False
-    args.use_e_prompt = False
-    for i in range(0,5):
-        print('G-Prompt')
-        file_name = args.output_file+'_noprompt_loop_'+str(i)+'.csv'
-        with open(file_name, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            accuracys, ts, tasks, metrics = main(args, writer, concept_drift)
-        end_time = time.time()
-        total_time = end_time - start_time
-        total_time_str = datetime.timedelta(seconds=int(total_time))
-        total_times.append(total_time_str)
-        t['noprompt'].append(tasks)
-        tree_diffs['noprompt'].append(ts)
-        accs['noprompt'].append(sum(accuracys)/len(accuracys))
-                
-        print(f'Total running times:{total_times}')
-        print(f'Order of tasks:{t}')
-        print(f'Average accuracy: {sum(accuracys)/len(accuracys)}')
-        print(f'Tasks and tree difference: {tree_diffs}')
-    
-    start_time = time.time()
-    args.use_g_prompt = True
-    args.use_e_prompt = False
-    args.g_prompt_length = 12
-    file_name = args.output_file+'_gprompt_length12.csv'
-    with open(file_name, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        accuracys, ts, tasks, metrics = main(args, writer, concept_drift)
-    end_time = time.time()
-    total_time = end_time - start_time
-    total_time_str = datetime.timedelta(seconds=int(total_time))
-    total_times.append(total_time_str)
-    t['result4'] = tasks
-    tree_diffs['result4'] = ts
-    accs['result4'] = sum(accuracys)/len(accuracys)
-
-        
-    print(f'Total running times:{total_times}')
-    print(f'Order of tasks:{t}')
-    print(f'Tasks and tree difference: {tree_diffs}')
-
-    start_time = time.time()
-    args.use_g_prompt = True
-    args.use_e_prompt = False
-    args.g_prompt_length = 15
-    file_name = args.output_file+'_gprompt_length15.csv'
-    with open(file_name, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        accuracys, ts, tasks, metrics = main(args, writer, concept_drift)
-    end_time = time.time()
-    total_time = end_time - start_time
-    total_time_str = datetime.timedelta(seconds=int(total_time))
-    total_times.append(total_time_str)
-    t['result5'] = tasks
-    tree_diffs['result5'] = ts
-    accs['result5'] = sum(accuracys)/len(accuracys)
-
-    print(f'Total running times:{total_times}')
-    print(f'Order of tasks:{t}')
-    print(f'Tasks and tree difference: {tree_diffs}')
-    """
         
     print(accs)
     sys.exit(0)
