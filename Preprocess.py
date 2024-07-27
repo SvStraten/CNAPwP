@@ -2,7 +2,7 @@
 """
 Created on Mon Dec 11 13:53:07 2023
 
-@author: Taqmara Verbeek
+@author: Tamara Verbeek
 """
 import pandas as pd
 import numpy as np
