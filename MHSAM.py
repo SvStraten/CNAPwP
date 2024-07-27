@@ -45,11 +45,11 @@ class VariableBatchSizeDataLoader:
 
 
 # Define MSA model
-class LSTMModel(nn.Module):
+class MHSAModel(nn.Module):
     def __init__(self, args, input_size, output_size, use_g_prompt=False, g_prompt_layer_idx=None,
                  use_e_prompt=False, e_prompt_layer_idx=None, g_prompt_length=None, prompt_init='uniform', prompt_length=None,
                  qkv_bias = False, prompt_key_init='uniform', num_heads=1):
-        super(LSTMModel, self).__init__()
+        super(MHSAModel, self).__init__()
         self.embedding_layers = nn.ModuleList()
         for k in range(args.prefix_length):
             embedding_layer = nn.Embedding(args.nrOfEvents, args.nrOfEvents)
@@ -91,9 +91,6 @@ class LSTMModel(nn.Module):
         self.norm = nn.LayerNorm(args.hidden_size)
         self.head = nn.Linear(args.hidden_size, output_size)
 
-        
-        
-            
 
     def forward(self, x, task, check_task, bucket):
         #x = x.to(torch.long)
@@ -178,7 +175,6 @@ def split_values(values, target_value, keys):
             for i,s in enumerate(sort):
                 sub_values[i] += s
             values2.extend([keys[ind]]*num_sub_values)
-
 
         result.extend(sub_values)
 
