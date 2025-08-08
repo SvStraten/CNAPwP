@@ -1,7 +1,7 @@
 # CNAPwP: Continual Next Activity Prediction with Prompts
 
-> This repository implements the framework proposed in the following works:  
-> - **Original paper:** *[Handling Catastrophic Forgetting: Online Continual Learning for Next Activity Prediction (CoopIS 2024) ]* — [\[link to paper\] ](https://doi.org/10.1007/978-3-031-81375-7_13) 
+This repository implements the framework proposed in the following works:  
+> - **Original paper:** *[Handling Catastrophic Forgetting: Online Continual Learning for Next Activity Prediction ]* — [\Link to CoopIS 2024 paper\] ](https://doi.org/10.1007/978-3-031-81375-7_13) 
 > - **Extension paper:** *[Title of Extension Paper]* — [link to paper]  
 
 **Continual Next Activity Prediction with Prompts (CNAPwP)** is an advanced machine learning framework designed to predict the next activity in a sequence of events by leveraging continual learning and prompt-based techniques. CNAPwP continually learns from new data without forgetting previously learned patterns in previous tasks, ensuring accurate and up-to-date predictions. The integration of prompts enhances the model's ability to understand and adapt to various task-specific behaviors, making it a powerful tool for applications in dynamic environments such as user behavior analysis, workflow management, and recommendation systems.
