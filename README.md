@@ -2,7 +2,7 @@
 
 This repository implements the framework proposed in the following works:  
 > - **Original paper:** *[Handling Catastrophic Forgetting: Online Continual Learning for Next Activity Prediction ]* — [\[CoopIS 2024 paper\] ](https://doi.org/10.1007/978-3-031-81375-7_13) 
-> - **Extension paper:** *[Chameleons do not Forget: Prompt-Based Online Continual Learning for Next Activity Prediction]* * — [\[IJCIS 2026 paper\] ](https://doi.org/10.1142/S0218843026500036)  
+> - **Extension paper:** *[Chameleons do not Forget: Prompt-Based Online Continual Learning for Next Activity Prediction]* — [\[IJCIS 2026 paper\] ](https://doi.org/10.1142/S0218843026500036)  
 
 ![CNAPwP Framework](architecture.png)
 
